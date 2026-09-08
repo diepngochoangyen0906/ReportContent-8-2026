@@ -314,13 +314,48 @@
                         </div>
                     </div>
 
-                    <!-- Images Gallery Section -->
-                    <div class="space-y-2 mt-2">
-                        <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[4/3] flex items-center justify-center relative">
-                            <img src="https://placehold.co/600x450/0f2137/ffffff?text=Visual+8.8+R%C6%A1ng+R%E1%BB%A1" alt="Campaign 8.8" class="w-full h-full object-cover">
+                    <!-- Images Gallery Slider Section for 8.8 Campaign -->
+                    <div class="space-y-3 mt-2">
+                        <!-- Main Banner -->
+                        <div class="rounded-2xl border border-stone-200 bg-white overflow-hidden flex items-center justify-center p-1 relative shadow-inner">
+                            <img src="Ngay doi 8.8 - banner.jpg" alt="Campaign 8.8 Rạng Rỡ" class="w-full h-auto object-contain rounded-xl block mx-auto">
                         </div>
-                        <div class="overflow-hidden rounded-xl border border-stone-200 bg-stone-100 aspect-[3/1] flex items-center justify-center relative">
-                            <img src="https://placehold.co/600x200/eadac1/333333?text=Banner+Khuy%E1%BA%BFn+M%C3%A3i" alt="Promo Banner" class="w-full h-full object-cover">
+                        
+                        <!-- Slider for "Banner Khuyến Mãi" (4 images with left/right arrows matching Youth U35 style) -->
+                        <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/slider88 p-1 shadow-inner">
+                            <!-- Slider Track -->
+                            <div id="slider88Track" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="Ngay doi 8.8 - 1.jpg" alt="Ngay doi 8.8 - 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="Ngay doi 8.8 - 2.jpg" alt="Ngay doi 8.8 - 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="Ngay doi 8.8 - 3.png" alt="Ngay doi 8.8 - 3" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="Ngay doi 8.8 - 4.png" alt="Ngay doi 8.8 - 4" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                            </div>
+                            
+                            <!-- Left Arrow Button -->
+                            <button onclick="moveSlider88(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/slider88:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            
+                            <!-- Right Arrow Button -->
+                            <button onclick="moveSlider88(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/slider88:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Slider Dots Indicator -->
+                            <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                <span class="slider88-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                <span class="slider88-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                                <span class="slider88-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                                <span class="slider88-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -692,6 +727,30 @@
                     dot.className = "youth-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all";
                 } else {
                     dot.className = "youth-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all";
+                }
+            });
+        }
+
+        // Ngay Doi 8.8 Promo Slider Logic
+        let currentSlide88 = 0;
+        const totalSlides88 = 4;
+
+        function moveSlider88(direction) {
+            currentSlide88 = (currentSlide88 + direction + totalSlides88) % totalSlides88;
+            updateSlider88();
+        }
+
+        function updateSlider88() {
+            const track = document.getElementById('slider88Track');
+            if (track) {
+                track.style.transform = `translateX(-${currentSlide88 * 100}%)`;
+            }
+            const dots = document.querySelectorAll('.slider88-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide88) {
+                    dot.className = "slider88-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all";
+                } else {
+                    dot.className = "slider88-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all";
                 }
             });
         }
