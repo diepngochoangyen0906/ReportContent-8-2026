@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Báo Cáo - Team Content</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#FAF7F2',
+                        brandRed: '#800A1D',
+                        brandRedDark: '#600715',
+                        brandNavy: '#0F2137',
+                        brandGold: '#C5A059',
+                        brandGoldLight: '#EADAC1',
+                        brandGoldDark: '#9A7A38',
+                        brandCardBg: '#FFFFFF',
+                        brandMetricBg: '#FAF2EC'
+                    },
+                    fontFamily: {
+                        serifTitle: ['Playfair Display', 'Cinzel', 'serif'],
+                        sansBody: ['Plus Jakarta Sans', 'sans-serif'],
+                        cinzel: ['Cinzel', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF7F2;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #2D3748;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .gold-title-gradient {
+            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(184, 134, 11, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        .gold-border-glow {
+            border: 1px solid #EADAC1;
+            transition: all 0.3s ease;
+        }
+
+        .gold-border-glow:hover {
+            border-color: #C5A059;
+            box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-between">
+
+    <!-- Top Action Floating Bar for Github & Editing -->
+    <header class="w-full mb-8">
+        <!-- Top Controls: Quick Edit & Export -->
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-6 bg-white/70 backdrop-blur-md p-3 rounded-2xl border border-amber-100 shadow-sm">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm text-amber-900 font-semibold px-2">
+                <i class="fa-brands fa-github text-lg text-slate-800"></i>
+                <span>GitHub Report Dashboard</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleEditToolbar()" class="text-xs sm:text-sm bg-amber-100 hover:bg-amber-200 text-amber-900 font-medium px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Chế độ chỉnh sửa</span>
+                </button>
+                <button onclick="exportHTML()" class="text-xs sm:text-sm bg-brandRed hover:bg-brandRedDark text-white font-medium px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1.5">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Xuất HTML / Copy</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- TEAM BADGE HEADER -->
+        <div class="flex justify-center mb-6">
+            <div class="inline-flex items-center gap-2 px-6 py-2.5 bg-brandRed text-white rounded-full font-bold text-xs sm:text-sm shadow-md tracking-wider">
+                <i class="fa-solid fa-file-lines text-xs"></i>
+                <span>TEAM CONTENT</span>
+            </div>
+        </div>
+
+        <!-- SUB TAB SWITCHER (3 TABS) -->
+        <div class="flex justify-center mb-8">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 p-1.5 bg-stone-100/80 rounded-2xl sm:rounded-full border border-stone-200 shadow-sm">
+                <button id="subTab1" onclick="switchSubTab(1)" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 bg-brandNavy text-white shadow">
+                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                    <span>DỰ ÁN NỔI BẬT</span>
+                </button>
+                <button id="subTab2" onclick="switchSubTab(2)" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/50">
+                    <i class="fa-solid fa-scale-balanced text-amber-600 text-xs"></i>
+                    <span>VAI TRÒ CREATIVE HUB</span>
+                </button>
+                <button id="subTab3" onclick="switchSubTab(3)" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/50">
+                    <i class="fa-solid fa-bolt text-amber-500 text-xs"></i>
+                    <span>HỖ TRỢ TRUYỀN THÔNG GTM</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Header Title Section -->
+        <div class="text-center max-w-2xl mx-auto px-4">
+            <h1 id="tabTitleHeader" class="text-2xl sm:text-4xl font-extrabold tracking-wider font-serifTitle gold-title-gradient uppercase mb-2">
+                DỰ ÁN NỔI BẬT
+            </h1>
+            <p id="tabSubtitleHeader" class="text-xs sm:text-sm text-stone-600 italic">
+                Tối ưu điểm chạm số và thúc đẩy doanh thu
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        <!-- EDIT TOOLBAR BANNER (Hidden by default) -->
+        <div id="editToolbar" class="hidden mb-6 p-4 bg-amber-50 border border-amber-300 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-inner">
+            <div class="flex items-center gap-2 text-amber-900 text-sm font-semibold">
+                <i class="fa-solid fa-circle-info text-amber-600"></i>
+                <span>Đang ở chế độ xem mẫu. Bạn có thể nhấn trực tiếp vào văn bản để sửa hoặc nhấn "Thêm Thẻ Mới".</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="addNewCard()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 transition">
+                    <i class="fa-solid fa-plus"></i> Thêm Thẻ Mới
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1 CONTENT: DỰ ÁN NỔI BẬT -->
+        <section id="contentSubTab1" class="tab-content transition-opacity duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridSubTab1">
+                
+                <!-- CARD 1 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <!-- Category Header -->
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                TĂNG DT HÀNG MỚI
+                            </span>
+                        </div>
+
+                        <!-- Project Title -->
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 tracking-tight leading-snug uppercase editable-text">
+                                CHƯƠNG TRÌNH YOUTH U35
+                            </h3>
+                        </div>
+
+                        <!-- Metric Highlight Box -->
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center h-[145px] flex flex-col justify-center items-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1 editable-text">
+                                HIỆU QUẢ KỲ VỌNG
+                            </p>
+                            
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text">
+                                2.030 Tỷ
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wide editable-text">
+                                TARGET DOANH THU
+                            </span>
+                        </div>
+
+                        <!-- Activity List Section -->
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
+                                SẢN XUẤT CONTENT TRUYỀN THÔNG
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-layer-group text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Sản xuất content Facebook Ads</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-desktop text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Sản xuất content ZNS may đo cho KHC và KHM</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-globe text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Hỗ trợ truyền thông chương trình qua Zalo Broadcast và Blog</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Images Gallery Section -->
+                    <div class="space-y-2 mt-2">
+                        <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[4/3] flex items-center justify-center relative">
+                            <img src="https://placehold.co/600x450/800a1d/ffffff?text=Banner+Youth+U35" alt="Campaign Banner" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Slider Sub-banner Ads (4 images with left/right arrows) -->
+                        <div class="relative overflow-hidden rounded-xl border border-stone-200 bg-stone-100 aspect-[3/1] group/slider">
+                            <!-- Slider Track -->
+                            <div id="youthSliderTrack" class="flex transition-transform duration-300 ease-out h-full w-full">
+                                <div class="min-w-full h-full flex items-center justify-center bg-amber-700 text-white font-semibold text-xs relative">
+                                    <img src="U35 -1.jpg" alt="Sub-banner Ads 1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="min-w-full h-full flex items-center justify-center bg-amber-800 text-white font-semibold text-xs relative">
+                                    <img src="U35 - 2.jpg" alt="Sub-banner Ads 2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="min-w-full h-full flex items-center justify-center bg-stone-800 text-white font-semibold text-xs relative">
+                                    <img src="U35 - 3.png" alt="Sub-banner Ads 3" class="w-full h-full object-cover">
+                                </div>
+                                <div class="min-w-full h-full flex items-center justify-center bg-stone-700 text-white font-semibold text-xs relative">
+                                    <img src="ZNS - U35 - 4.png" alt="Sub-banner Ads 4" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            
+                            <!-- Left Arrow Button -->
+                            <button onclick="moveYouthSlider(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            
+                            <!-- Right Arrow Button -->
+                            <button onclick="moveYouthSlider(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Slider Dots Indicator -->
+                            <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                <span class="youth-dot w-1.5 h-1.5 rounded-full bg-white shadow-sm transition-all"></span>
+                                <span class="youth-dot w-1.5 h-1.5 rounded-full bg-white/50 shadow-sm transition-all"></span>
+                                <span class="youth-dot w-1.5 h-1.5 rounded-full bg-white/50 shadow-sm transition-all"></span>
+                                <span class="youth-dot w-1.5 h-1.5 rounded-full bg-white/50 shadow-sm transition-all"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <!-- Category Header -->
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                TĂNG DT VÀ PHÁT TRIỂN KHM
+                            </span>
+                        </div>
+
+                        <!-- Project Title -->
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 tracking-tight leading-snug uppercase editable-text">
+                                NGÀY ĐÔI 8.8
+                            </h3>
+                            
+                        </div>
+
+                        <!-- Metric Highlight Box -->
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center h-[145px] flex flex-col justify-center items-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-0.5 editable-text">
+                                HIỆU QUẢ CHƯƠNG TRÌNH
+                            </p>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-0.5 editable-text">
+                                10.775
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wide editable-text">
+                                LEAD (FFTS)
+                            </span>
+                            <p class="text-[9px] text-stone-400 italic mt-0.5 editable-text">*Lead (FFTS) = SĐT Kh tiềm năng + đơn hàng</p>
+                        </div>
+
+                        <!-- Activity List Section -->
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
+                                SẢN XUẤT CONTENT TRUYỀN THÔNG
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-paintbrush text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Sản xuất key message may đo cho chương trình</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-wrench text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Sản xuất content Facebook Ads, ZNS,...</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-video text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Truyền thông chương trình qua kênh Zalo Broadcast, Blog</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Images Gallery Section -->
+                    <div class="space-y-2 mt-2">
+                        <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[4/3] flex items-center justify-center relative">
+                            <img src="https://placehold.co/600x450/0f2137/ffffff?text=Visual+8.8+R%C6%A1ng+R%E1%BB%A1" alt="Campaign 8.8" class="w-full h-full object-cover">
+                        </div>
+                        <div class="overflow-hidden rounded-xl border border-stone-200 bg-stone-100 aspect-[3/1] flex items-center justify-center relative">
+                            <img src="https://placehold.co/600x200/eadac1/333333?text=Banner+Khuy%E1%BA%BFn+M%C3%A3i" alt="Promo Banner" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <!-- Category Header -->
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                TĂNG DT TỪ KHC
+                            </span>
+                        </div>
+
+                        <!-- Project Title -->
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 tracking-tight leading-snug uppercase editable-text">
+                                HOẠT ĐỘNG TÁI TIẾP CẬN KHC
+                            </h3>
+                        </div>
+
+                        <!-- Metric Highlight Box -->
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center h-[145px] flex flex-col justify-center items-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1 editable-text">
+                                HIỆU QUẢ CHƯƠNG TRÌNH
+                            </p>
+                            
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text">
+                                TBU
+                            </div>
+                        </div>
+
+                        <!-- Activity List Section -->
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
+                                SẢN XUẤT CONTENT ZNS MAY DO CHO TỪNG TỆP KHÁCH HÀNG
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-image text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">May đo content thích hợp cho các tệp KHC</span>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Images Gallery Section -->
+                    <div class="mt-2">
+                        <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[3/4] flex items-center justify-center relative">
+                            <img src="https://placehold.co/600x800/800a1d/ffffff?text=Payday+Poster" alt="Payday Poster" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 2 CONTENT: VAI TRÒ CREATIVE HUB -->
+        <section id="contentSubTab2" class="tab-content hidden transition-opacity duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridSubTab2">
+                
+                <!-- PLACEHOLDER CARD 1 FOR TAB 2 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                VAI TRÒ SÁNG TẠO
+                            </span>
+                        </div>
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 uppercase editable-text">
+                                CHUẨN HÓA BRAND ASSETS
+                            </h3>
+                            <p class="text-[11px] text-stone-500 mt-0.5 editable-text">Định hướng & Bộ nhận diện</p>
+                        </div>
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase mb-1 editable-text">TỔNG BỘ GUIDELINE</p>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text">100%</div>
+                            <span class="text-[11px] font-bold text-slate-700 uppercase editable-text">ĐÁP ỨNG TIẾN ĐỘ</span>
+                        </div>
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
+                                HẠNG MỤC THỰC HIỆN
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text">Xây dựng Key Visual Master cho thương hiệu</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text">Thống nhất Brand Voice & Tone bài viết</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[16/9] flex items-center justify-center">
+                        <img src="https://placehold.co/600x337/0f2137/ffffff?text=Brand+Guideline+Content" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER CARD 2 FOR TAB 2 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group border-dashed border-2 border-amber-300/60 bg-amber-50/20">
+                    <div class="text-center py-12 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-folder-plus text-4xl text-amber-500/60 mb-3"></i>
+                        <h4 class="text-base font-bold text-stone-700 mb-1">Khu vực trống Tab 2</h4>
+                        <p class="text-xs text-stone-500 mb-4 max-w-xs">Bấm nút bên dưới để thêm dự án Creative Hub của bạn.</p>
+                        <button onclick="addNewCard('gridSubTab2')" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-plus"></i> Thêm nội dung Tab 2
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 3 CONTENT: HỖ TRỢ TRUYỀN THÔNG GTM -->
+        <section id="contentSubTab3" class="tab-content hidden transition-opacity duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridSubTab3">
+                
+                <!-- PLACEHOLDER CARD 1 FOR TAB 3 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                GO-TO-MARKET SUPPORT
+                            </span>
+                        </div>
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 uppercase editable-text">
+                                CHIẾN DỊCH LAUNCHING SẢN PHẨM MỚI
+                            </h3>
+                            <p class="text-[11px] text-stone-500 mt-0.5 editable-text">Kênh Online & Offline</p>
+                        </div>
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase mb-1 editable-text">TỔNG LƯỢT TIẾP CẬN</p>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text">1.2M+</div>
+                            <span class="text-[11px] font-bold text-slate-700 uppercase editable-text">IMPRESSIONS GTM</span>
+                        </div>
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
+                                SẢN PHẨM CONTENT GTM
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-bullhorn text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text">Thông cáo báo chí, bài PR Báo chí</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-share-nodes text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text">Social Content, Video Scripts, Angle seeding</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[16/9] flex items-center justify-center">
+                        <img src="https://placehold.co/600x337/800a1d/ffffff?text=GTM+Media+Plan" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER CARD 2 FOR TAB 3 -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group border-dashed border-2 border-amber-300/60 bg-amber-50/20">
+                    <div class="text-center py-12 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-rocket text-4xl text-amber-500/60 mb-3"></i>
+                        <h4 class="text-base font-bold text-stone-700 mb-1">Khu vực trống Tab 3</h4>
+                        <p class="text-xs text-stone-500 mb-4 max-w-xs">Bấm nút bên dưới để thêm chiến dịch GTM của bạn.</p>
+                        <button onclick="addNewCard('gridSubTab3')" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-plus"></i> Thêm nội dung Tab 3
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-xs text-stone-400 border-t border-stone-200/80 pt-6">
+        <p>© 2026 Interactive Content Team Dashboard | Ready for GitHub Hosting</p>
+    </footer>
+
+    <!-- EXPORT MODAL -->
+    <div id="exportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-amber-200">
+            <div class="flex justify-between items-center mb-4 pb-3 border-b border-stone-100">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-code text-brandRed"></i> Xuất Mã HTML Hoàn Chỉnh
+                </h3>
+                <button onclick="closeExportModal()" class="text-stone-400 hover:text-stone-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-stone-600 mb-3">
+                Bạn có thể sao chép đoạn mã HTML này hoặc tải về file <code class="bg-amber-100 text-amber-900 px-1 py-0.5 rounded">index.html</code> để upload trực tiếp lên GitHub Pages / Repository!
+            </p>
+            <textarea id="htmlOutputCode" readonly class="w-full h-64 p-3 bg-stone-900 text-emerald-400 font-mono text-xs rounded-xl border border-stone-700 focus:outline-none mb-4 resize-none"></textarea>
+            <div class="flex flex-wrap justify-end gap-3">
+                <button onclick="copyToClipboard()" class="bg-stone-200 hover:bg-stone-300 text-stone-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-copy"></i> Copy Code
+                </button>
+                <button onclick="downloadHTMLFile()" class="bg-brandRed hover:bg-brandRedDark text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-1.5 shadow">
+                    <i class="fa-solid fa-file-arrow-down"></i> Tải File index.html
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let currentSubTab = 1;
+        let isEditMode = false;
+
+        const tabTitles = {
+            1: {
+                title: "DỰ ÁN NỔI BẬT",
+                subtitle: "Tối ưu điểm chạm số và thúc đẩy doanh thu"
+            },
+            2: {
+                title: "VAI TRÒ CREATIVE HUB",
+                subtitle: "Định hướng sáng tạo & Chuẩn hóa tài nguyên thương hiệu"
+            },
+            3: {
+                title: "HỖ TRỢ TRUYỀN THÔNG GTM",
+                subtitle: "Thúc đẩy các chiến dịch Go-To-Market & Truyền thông tích hợp"
+            }
+        };
+
+        // Switch Sub-tabs (1, 2, 3)
+        function switchSubTab(tabNumber) {
+            currentSubTab = tabNumber;
+
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+            // Reset sub-tab buttons styling
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`subTab${i}`);
+                if (i === tabNumber) {
+                    btn.className = "px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 bg-brandNavy text-white shadow";
+                } else {
+                    btn.className = "px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/50";
+                }
+            }
+
+            // Show current sub tab
+            const targetContent = document.getElementById(`contentSubTab${tabNumber}`);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Update Titles
+            document.getElementById('tabTitleHeader').innerText = tabTitles[tabNumber].title;
+            document.getElementById('tabSubtitleHeader').innerText = tabTitles[tabNumber].subtitle;
+        }
+
+        // Toggle Edit Toolbar & Editable Attributes
+        function toggleEditToolbar() {
+            isEditMode = !isEditMode;
+            const toolbar = document.getElementById('editToolbar');
+            const editControls = document.querySelectorAll('.edit-control');
+            const editableTexts = document.querySelectorAll('.editable-text');
+
+            if (isEditMode) {
+                toolbar.classList.remove('hidden');
+                editControls.forEach(el => el.classList.remove('hidden'));
+                editableTexts.forEach(el => {
+                    el.contentEditable = "true";
+                    el.classList.add('ring-1', 'ring-amber-400', 'bg-amber-50/50', 'rounded', 'px-1', 'outline-none');
+                });
+            } else {
+                toolbar.classList.add('hidden');
+                editControls.forEach(el => el.classList.add('hidden'));
+                editableTexts.forEach(el => {
+                    el.contentEditable = "false";
+                    el.classList.remove('ring-1', 'ring-amber-400', 'bg-amber-50/50', 'rounded', 'px-1', 'outline-none');
+                });
+            }
+        }
+
+        // Add New Card Placeholder to Active Subtab Grid
+        function addNewCard(targetGridId = null) {
+            const gridId = targetGridId || `gridSubTab${currentSubTab}`;
+            const grid = document.getElementById(gridId);
+
+            if (!grid) return;
+
+            const cardHtml = `
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control ${isEditMode ? '' : 'hidden'} absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text" contenteditable="${isEditMode}">
+                                HẠNG MỤC MỚI
+                            </span>
+                        </div>
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 uppercase editable-text" contenteditable="${isEditMode}">
+                                TÊN DỰ ÁN MỚI
+                            </h3>
+                            <p class="text-[11px] text-stone-500 mt-0.5 editable-text" contenteditable="${isEditMode}">Mô tả ngắn dự án</p>
+                        </div>
+                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center">
+                            <p class="text-[11px] font-bold text-amber-800 uppercase mb-1 editable-text" contenteditable="${isEditMode}">CHỈ SỐ ĐẠT ĐƯỢC</p>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text" contenteditable="${isEditMode}">100%</div>
+                            <span class="text-[11px] font-bold text-slate-700 uppercase editable-text" contenteditable="${isEditMode}">MỤC TIÊU</span>
+                        </div>
+                        <div class="mb-5">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text" contenteditable="${isEditMode}">
+                                NỘI DUNG THỰC HIỆN
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text" contenteditable="${isEditMode}">Nội dung công việc 1</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5"></i>
+                                    <span class="editable-text" contenteditable="${isEditMode}">Nội dung công việc 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[16/9] flex items-center justify-center">
+                        <img src="https://placehold.co/600x337/c5a059/ffffff?text=Hình+Ảnh+Mới" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            `;
+
+            grid.insertAdjacentHTML('beforeend', cardHtml);
+        }
+
+        // Delete Card
+        function deleteCard(buttonElement) {
+            const card = buttonElement.closest('.group');
+            if (card) {
+                card.remove();
+            }
+        }
+
+        // Youth U35 Sub-banner Ads Slider Logic
+        let currentYouthSlide = 0;
+        const totalYouthSlides = 4;
+
+        function moveYouthSlider(direction) {
+            currentYouthSlide = (currentYouthSlide + direction + totalYouthSlides) % totalYouthSlides;
+            updateYouthSlider();
+        }
+
+        function updateYouthSlider() {
+            const track = document.getElementById('youthSliderTrack');
+            if (track) {
+                track.style.transform = `translateX(-${currentYouthSlide * 100}%)`;
+            }
+            const dots = document.querySelectorAll('.youth-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentYouthSlide) {
+                    dot.className = "youth-dot w-3 h-1.5 rounded-full bg-white shadow-sm transition-all";
+                } else {
+                    dot.className = "youth-dot w-1.5 h-1.5 rounded-full bg-white/50 shadow-sm transition-all";
+                }
+            });
+        }
+
+        // Export Full Clean HTML
+        function exportHTML() {
+            // Disable edit mode visually before exporting clean html
+            if (isEditMode) {
+                toggleEditToolbar();
+            }
+
+            const docClone = document.documentElement.cloneNode(true);
+            
+            // Clean up editable attributes and edit controls from clone
+            docClone.querySelectorAll('.editable-text').forEach(el => {
+                el.removeAttribute('contenteditable');
+                el.classList.remove('ring-1', 'ring-amber-400', 'bg-amber-50/50', 'rounded', 'px-1', 'outline-none');
+            });
+            docClone.querySelectorAll('.edit-control').forEach(el => el.classList.add('hidden'));
+            const toolbar = docClone.querySelector('#editToolbar');
+            if(toolbar) toolbar.classList.add('hidden');
+
+            const fullHtmlString = "<!DOCTYPE html>\n" + docClone.outerHTML;
+            document.getElementById('htmlOutputCode').value = fullHtmlString;
+            document.getElementById('exportModal').classList.remove('hidden');
+        }
+
+        function closeExportModal() {
+            document.getElementById('exportModal').classList.add('hidden');
+        }
+
+        function copyToClipboard() {
+            const codeText = document.getElementById('htmlOutputCode');
+            codeText.select();
+            document.execCommand('copy');
+            alert('Đã copy mã HTML thành công!');
+        }
+
+        function downloadHTMLFile() {
+            const codeText = document.getElementById('htmlOutputCode').value;
+            const blob = new Blob([codeText], { type: 'text/html;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'index.html';
+            a.click();
+        }
+    </script>
+</body>
+</html>
