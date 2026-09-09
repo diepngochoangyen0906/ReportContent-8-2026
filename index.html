@@ -451,60 +451,290 @@
 
         <!-- TAB 2 CONTENT: VAI TRÒ CREATIVE HUB -->
         <section id="contentSubTab2" class="tab-content hidden transition-opacity duration-300">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridSubTab2">
+            <!-- Section Header Banner from slide -->
+            <div class="mb-8 p-5 bg-gradient-to-r from-brandRedDark via-brandRed to-brandRedDark rounded-3xl text-white text-center shadow-lg border border-amber-300/40">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-200 block mb-1">VAI TRÒ CREATIVE HUB</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold tracking-wide font-serifTitle uppercase">ĐẢM BẢO TÍNH NHẤT QUÁN GIỮA BRANDING VÀ COMMERCIAL</h2>
+            </div>
+
+            <!-- Sub-section Header: OMNI – CX - CS -->
+            <div class="mb-6">
+                <div class="inline-block px-6 py-2 bg-brandNavy text-white font-bold text-sm rounded-xl shadow mb-4">
+                    OMNI – CX - CS
+                </div>
                 
-                <!-- PLACEHOLDER CARD 1 FOR TAB 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- CARD 1: HỖ TRỢ TRUYỀN THÔNG CHÍNH SÁCH THU ĐỔI SAU 21/7 -->
+                    <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                        <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <div>
+                            <div class="text-center mb-3">
+                                <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                    CHÍNH SÁCH THU ĐỔI
+                                </span>
+                            </div>
+                            <div class="text-center mb-4">
+                                <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 tracking-tight leading-snug uppercase editable-text">
+                                    HỖ TRỢ TRUYỀN THÔNG CHÍNH SÁCH THU ĐỔI SAU 21/7
+                                </h3>
+                            </div>
+                            <div class="mb-5">
+                                <ul class="space-y-2 text-xs text-stone-700">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                        <span class="editable-text">Truyền thông đến khách hàng về chính sách thu đổi</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Image Slider for CX CS 1 -->
+                        <div class="mt-2">
+                            <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/sliderCX1 p-1 shadow-inner">
+                                <div id="sliderCX1Track" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                    <div class="min-w-full flex items-center justify-center relative">
+                                        <img src="https://placehold.co/600x400/faf2ec/800a1d?text=THÔNG+TIN+GIAO+DỊCH+MUA+LẠI" alt="CX 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                    </div>
+                                    <div class="min-w-full flex items-center justify-center relative">
+                                        <img src="https://placehold.co/600x400/faf2ec/800a1d?text=PHƯƠNG+ÁN+XỬ+LÝ+GIAO+DỊCH" alt="CX 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                    </div>
+                                </div>
+                                <button onclick="moveSliderCX1(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderCX1:opacity-100 transition-opacity z-10">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button onclick="moveSliderCX1(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderCX1:opacity-100 transition-opacity z-10">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                                <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                    <span class="sliderCX1-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                    <span class="sliderCX1-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: HỖ TRỢ TRUYỀN THÔNG “GOOD NEWS” CHO PNJ -->
+                    <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                        <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <div>
+                            <div class="text-center mb-3">
+                                <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
+                                    GOOD NEWS
+                                </span>
+                            </div>
+                            <div class="text-center mb-4">
+                                <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 tracking-tight leading-snug uppercase editable-text">
+                                    HỖ TRỢ TRUYỀN THÔNG “GOOD NEWS” CHO PNJ
+                                </h3>
+                            </div>
+                            <div class="mb-5">
+                                <ul class="space-y-2 text-xs text-stone-700">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                        <span class="editable-text">Lan toả thông tin qua kênh Zalo Broadcast</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                        <span class="editable-text">Sáng tạo content cho Pop up trên website</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Image Slider for CX CS 2 -->
+                        <div class="mt-2">
+                            <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/sliderCX2 p-1 shadow-inner">
+                                <div id="sliderCX2Track" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                    <div class="min-w-full flex items-center justify-center relative">
+                                        <img src="https://placehold.co/600x400/faf2ec/800a1d?text=GOOD+NEWS+PNJ+1" alt="GN 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                    </div>
+                                    <div class="min-w-full flex items-center justify-center relative">
+                                        <img src="https://placehold.co/600x400/faf2ec/800a1d?text=GOOD+NEWS+PNJ+2" alt="GN 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                    </div>
+                                    <div class="min-w-full flex items-center justify-center relative">
+                                        <img src="https://placehold.co/600x400/faf2ec/800a1d?text=GOOD+NEWS+PNJ+3" alt="GN 3" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                    </div>
+                                </div>
+                                <button onclick="moveSliderCX2(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderCX2:opacity-100 transition-opacity z-10">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button onclick="moveSliderCX2(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderCX2:opacity-100 transition-opacity z-10">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                                <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                    <span class="sliderCX2-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                    <span class="sliderCX2-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                                    <span class="sliderCX2-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sub-section Header: OMNI – TĂNG TRƯỞNG SỐ | OMNI - PNS | OMNI - MKT -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                
+                <!-- CARD 3: OMNI – TĂNG TRƯỞNG SỐ -->
                 <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
                     <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                     <div>
                         <div class="text-center mb-3">
-                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text">
-                                VAI TRÒ SÁNG TẠO
+                            <span class="text-xs font-bold px-3 py-1 bg-brandNavy text-white rounded-xl shadow inline-block uppercase tracking-wider">
+                                OMNI – TĂNG TRƯỞNG SỐ
                             </span>
                         </div>
                         <div class="text-center mb-4">
-                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 uppercase editable-text">
-                                CHUẨN HÓA BRAND ASSETS
+                            <h3 class="text-base sm:text-lg font-bold font-serifTitle text-slate-800 uppercase editable-text">
+                                HỖ TRỢ THÚC ĐẨY KHC QUAY LẠI MUA HÀNG
                             </h3>
-                            <p class="text-[11px] text-stone-500 mt-0.5 editable-text">Định hướng & Bộ nhận diện</p>
-                        </div>
-                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center">
-                            <p class="text-[11px] font-bold text-amber-800 uppercase mb-1 editable-text">TỔNG BỘ GUIDELINE</p>
-                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text">100%</div>
-                            <span class="text-[11px] font-bold text-slate-700 uppercase editable-text">ĐÁP ỨNG TIẾN ĐỘ</span>
                         </div>
                         <div class="mb-5">
-                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text">
-                                HẠNG MỤC THỰC HIỆN
-                            </h4>
                             <ul class="space-y-2 text-xs text-stone-700">
                                 <li class="flex items-start gap-2">
-                                    <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
-                                    <span class="editable-text">Xây dựng Key Visual Master cho thương hiệu</span>
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Cá nhân hóa thông điệp theo hành vi & giá trị khách hàng</span>
                                 </li>
                                 <li class="flex items-start gap-2">
-                                    <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
-                                    <span class="editable-text">Thống nhất Brand Voice & Tone bài viết</span>
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Điều chỉnh content theo từng segment / customer profile</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[16/9] flex items-center justify-center">
-                        <img src="https://placehold.co/600x337/0f2137/ffffff?text=Brand+Guideline+Content" class="w-full h-full object-cover">
+
+                    <!-- Image Slider for Growth -->
+                    <div class="mt-2">
+                        <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/sliderGrowth p-1 shadow-inner">
+                            <div id="sliderGrowthTrack" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=KHC+QUAY+LẠI+1" alt="G 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=KHC+QUAY+LẠI+2" alt="G 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                            </div>
+                            <button onclick="moveSliderGrowth(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderGrowth:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="moveSliderGrowth(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderGrowth:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                <span class="sliderGrowth-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                <span class="sliderGrowth-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- PLACEHOLDER CARD 2 FOR TAB 2 -->
-                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group border-dashed border-2 border-amber-300/60 bg-amber-50/20">
-                    <div class="text-center py-12 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-folder-plus text-4xl text-amber-500/60 mb-3"></i>
-                        <h4 class="text-base font-bold text-stone-700 mb-1">Khu vực trống Tab 2</h4>
-                        <p class="text-xs text-stone-500 mb-4 max-w-xs">Bấm nút bên dưới để thêm dự án Creative Hub của bạn.</p>
-                        <button onclick="addNewCard('gridSubTab2')" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-plus"></i> Thêm nội dung Tab 2
-                        </button>
+                <!-- CARD 4: OMNI - PNS -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-xs font-bold px-3 py-1 bg-brandNavy text-white rounded-xl shadow inline-block uppercase tracking-wider">
+                                OMNI - PNS
+                            </span>
+                        </div>
+                        <div class="text-center mb-4">
+                            <h3 class="text-base sm:text-lg font-bold font-serifTitle text-slate-800 uppercase editable-text">
+                                TRUYỀN THÔNG CHƯƠNG TRÌNH PAYDAY THÁNG 8
+                            </h3>
+                        </div>
+                        <div class="mb-5">
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Payday vé số, sở hữu vàng PNJ và thanh toán bằng nguồn tiền tín dụng trên app ngân hàng</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Image Slider for PNS -->
+                    <div class="mt-2">
+                        <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/sliderPNS p-1 shadow-inner">
+                            <div id="sliderPNSTrack" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=PAYDAY+THÁNG+8+-+1" alt="P 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=PAYDAY+THÁNG+8+-+2" alt="P 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                            </div>
+                            <button onclick="moveSliderPNS(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderPNS:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="moveSliderPNS(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderPNS:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                <span class="sliderPNS-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                <span class="sliderPNS-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5: OMNI - MKT -->
+                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
+                    <button onclick="deleteCard(this)" class="edit-control hidden absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-xs font-bold px-3 py-1 bg-brandNavy text-white rounded-xl shadow inline-block uppercase tracking-wider">
+                                OMNI - MKT
+                            </span>
+                        </div>
+                        <div class="text-center mb-4">
+                            <h3 class="text-base sm:text-lg font-bold font-serifTitle text-slate-800 uppercase editable-text">
+                                HỖ TRỢ THÚC ĐẨY DOANH THU CÁC DÒNG HÀNG TRANG SỨC NON-SALE
+                            </h3>
+                        </div>
+                        <div class="mb-5">
+                            <ul class="space-y-2 text-xs text-stone-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 text-xs"></i>
+                                    <span class="editable-text">Sáng tạo key message và nội dung may đo phù hợp cho mỗi dòng hàng</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Image Slider for MKT -->
+                    <div class="mt-2">
+                        <div class="relative rounded-2xl border border-stone-200 bg-white overflow-hidden group/sliderMKT p-1 shadow-inner">
+                            <div id="sliderMKTTrack" class="flex transition-transform duration-300 ease-out w-full items-center">
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=NON-SALE+1" alt="M 1" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                                <div class="min-w-full flex items-center justify-center relative">
+                                    <img src="https://placehold.co/600x400/faf2ec/800a1d?text=NON-SALE+2" alt="M 2" class="w-full h-auto object-contain rounded-xl block mx-auto">
+                                </div>
+                            </div>
+                            <button onclick="moveSliderMKT(-1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderMKT:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="moveSliderMKT(1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] backdrop-blur-sm opacity-0 group-hover/sliderMKT:opacity-100 transition-opacity z-10">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <div class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1 z-10 pointer-events-none">
+                                <span class="sliderMKT-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all"></span>
+                                <span class="sliderMKT-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -607,209 +837,45 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        let currentSubTab = 1;
-        let isEditMode = false;
-
-        const tabTitles = {
-            1: {
-                title: "DỰ ÁN NỔI BẬT",
-                subtitle: "Tối ưu điểm chạm số và thúc đẩy doanh thu"
-            },
-            2: {
-                title: "VAI TRÒ CREATIVE HUB",
-                subtitle: "Định hướng sáng tạo & Chuẩn hóa tài nguyên thương hiệu"
-            },
-            3: {
-                title: "HỖ TRỢ TRUYỀN THÔNG GTM",
-                subtitle: "Thúc đẩy các chiến dịch Go-To-Market & Truyền thông tích hợp"
-            }
-        };
-
-        // Switch Sub-tabs (1, 2, 3)
         function switchSubTab(tabNumber) {
-            currentSubTab = tabNumber;
-
             // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-
-            // Reset sub-tab buttons styling
             for (let i = 1; i <= 3; i++) {
-                const btn = document.getElementById(`subTab${i}`);
-                if (i === tabNumber) {
-                    btn.className = "px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 bg-brandNavy text-white shadow";
-                } else {
+                const content = document.getElementById('contentSubTab' + i);
+                const btn = document.getElementById('subTab' + i);
+                if (content) {
+                    content.classList.add('hidden');
+                }
+                if (btn) {
                     btn.className = "px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/50";
                 }
             }
 
-            // Show current sub tab
-            const targetContent = document.getElementById(`contentSubTab${tabNumber}`);
-            if (targetContent) {
-                targetContent.classList.remove('hidden');
+            // Show selected tab content
+            const activeContent = document.getElementById('contentSubTab' + tabNumber);
+            const activeBtn = document.getElementById('subTab' + tabNumber);
+            
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 bg-brandNavy text-white shadow";
             }
 
-            // Update Titles
-            document.getElementById('tabTitleHeader').innerText = tabTitles[tabNumber].title;
-            document.getElementById('tabSubtitleHeader').innerText = tabTitles[tabNumber].subtitle;
-        }
-
-        // Toggle Edit Toolbar & Editable Attributes
-        function toggleEditToolbar() {
-            isEditMode = !isEditMode;
-            const toolbar = document.getElementById('editToolbar');
-            const editControls = document.querySelectorAll('.edit-control');
-            const editableTexts = document.querySelectorAll('.editable-text');
-
-            if (isEditMode) {
-                toolbar.classList.remove('hidden');
-                editControls.forEach(el => el.classList.remove('hidden'));
-                editableTexts.forEach(el => {
-                    el.contentEditable = "true";
-                    el.classList.add('ring-1', 'ring-amber-400', 'bg-amber-50/50', 'rounded', 'px-1', 'outline-none');
-                });
-            } else {
-                toolbar.classList.add('hidden');
-                editControls.forEach(el => el.classList.add('hidden'));
-                editableTexts.forEach(el => {
-                    el.contentEditable = "false";
-                    el.classList.remove('ring-1', 'ring-amber-400', 'bg-amber-50/50', 'rounded', 'px-1', 'outline-none');
-                });
+            // Update Header Title & Subtitle based on tab
+            const titleHeader = document.getElementById('tabTitleHeader');
+            const subtitleHeader = document.getElementById('tabSubtitleHeader');
+            
+            if (tabNumber === 1) {
+                if (titleHeader) titleHeader.innerText = "DỰ ÁN NỔI BẬT";
+                if (subtitleHeader) subtitleHeader.innerText = "Tối ưu điểm chạm số và thúc đẩy doanh thu";
+            } else if (tabNumber === 2) {
+                if (titleHeader) titleHeader.innerText = "VAI TRÒ CREATIVE HUB";
+                if (subtitleHeader) subtitleHeader.innerText = "Đảm bảo tính nhất quán giữa Branding và Commercial";
+            } else if (tabNumber === 3) {
+                if (titleHeader) titleHeader.innerText = "HỖ TRỢ TRUYỀN THÔNG GTM";
+                if (subtitleHeader) subtitleHeader.innerText = "Go-To-Market campaigns & launch support";
             }
         }
 
-        // Add New Card Placeholder to Active Subtab Grid
-        function addNewCard(targetGridId = null) {
-            const gridId = targetGridId || `gridSubTab${currentSubTab}`;
-            const grid = document.getElementById(gridId);
-
-            if (!grid) return;
-
-            const cardHtml = `
-                <div class="bg-brandCardBg rounded-3xl p-5 sm:p-6 gold-border-glow custom-card-shadow flex flex-col justify-between relative group">
-                    <button onclick="deleteCard(this)" class="edit-control ${isEditMode ? '' : 'hidden'} absolute top-3 right-3 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded-full text-xs">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                    <div>
-                        <div class="text-center mb-3">
-                            <span class="text-[10px] sm:text-xs font-bold text-amber-700 tracking-wider uppercase bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/60 inline-block editable-text" contenteditable="${isEditMode}">
-                                HẠNG MỤC MỚI
-                            </span>
-                        </div>
-                        <div class="text-center mb-4">
-                            <h3 class="text-lg sm:text-xl font-bold font-serifTitle text-slate-800 uppercase editable-text" contenteditable="${isEditMode}">
-                                TÊN DỰ ÁN MỚI
-                            </h3>
-                            <p class="text-[11px] text-stone-500 mt-0.5 editable-text" contenteditable="${isEditMode}">Mô tả ngắn dự án</p>
-                        </div>
-                        <div class="bg-brandMetricBg rounded-2xl p-4 mb-5 border border-amber-200/70 text-center">
-                            <p class="text-[11px] font-bold text-amber-800 uppercase mb-1 editable-text" contenteditable="${isEditMode}">CHỈ SỐ ĐẠT ĐƯỢC</p>
-                            <div class="text-2xl sm:text-3xl font-extrabold text-brandRed font-serifTitle my-1 editable-text" contenteditable="${isEditMode}">100%</div>
-                            <span class="text-[11px] font-bold text-slate-700 uppercase editable-text" contenteditable="${isEditMode}">MỤC TIÊU</span>
-                        </div>
-                        <div class="mb-5">
-                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider text-center mb-3 pb-1 border-b border-stone-100 editable-text" contenteditable="${isEditMode}">
-                                NỘI DUNG THỰC HIỆN
-                            </h4>
-                            <ul class="space-y-2 text-xs text-stone-700">
-                                <li class="flex items-start gap-2">
-                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5"></i>
-                                    <span class="editable-text" contenteditable="${isEditMode}">Nội dung công việc 1</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5"></i>
-                                    <span class="editable-text" contenteditable="${isEditMode}">Nội dung công việc 2</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 aspect-[16/9] flex items-center justify-center">
-                        <img src="https://placehold.co/600x337/c5a059/ffffff?text=Hình+Ảnh+Mới" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            `;
-
-            grid.insertAdjacentHTML('beforeend', cardHtml);
-        }
-
-        // Delete Card
-        function deleteCard(buttonElement) {
-            const card = buttonElement.closest('.group');
-            if (card) {
-                card.remove();
-            }
-        }
-
-        // Youth U35 Sub-banner Ads Slider Logic
         let currentYouthSlide = 0;
-        const totalYouthSlides = 4;
-
-        function moveYouthSlider(direction) {
-            currentYouthSlide = (currentYouthSlide + direction + totalYouthSlides) % totalYouthSlides;
-            updateYouthSlider();
-        }
-
-        function updateYouthSlider() {
-            const track = document.getElementById('youthSliderTrack');
-            if (track) {
-                track.style.transform = `translateX(-${currentYouthSlide * 100}%)`;
-            }
-            const dots = document.querySelectorAll('.youth-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentYouthSlide) {
-                    dot.className = "youth-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all";
-                } else {
-                    dot.className = "youth-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all";
-                }
-            });
-        }
-
-        // Ngay Doi 8.8 Promo Slider Logic
-        let currentSlide88 = 0;
-        const totalSlides88 = 4;
-
-        function moveSlider88(direction) {
-            currentSlide88 = (currentSlide88 + direction + totalSlides88) % totalSlides88;
-            updateSlider88();
-        }
-
-        function updateSlider88() {
-            const track = document.getElementById('slider88Track');
-            if (track) {
-                track.style.transform = `translateX(-${currentSlide88 * 100}%)`;
-            }
-            const dots = document.querySelectorAll('.slider88-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentSlide88) {
-                    dot.className = "slider88-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all";
-                } else {
-                    dot.className = "slider88-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all";
-                }
-            });
-        }
-
-        // KHC Promo Slider Logic
-        let currentSlideKHC = 0;
-        const totalSlidesKHC = 4;
-
-        function moveSliderKHC(direction) {
-            currentSlideKHC = (currentSlideKHC + direction + totalSlidesKHC) % totalSlidesKHC;
-            updateSliderKHC();
-        }
-
-        function updateSliderKHC() {
-            const track = document.getElementById('sliderKHCTrack');
-            if (track) {
-                track.style.transform = `translateX(-${currentSlideKHC * 100}%)`;
-            }
-            const dots = document.querySelectorAll('.sliderKHC-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentSlideKHC) {
-                    dot.className = "sliderKHC-dot w-3 h-1.5 rounded-full bg-stone-700 shadow-sm transition-all";
-                } else {
-                    dot.className = "sliderKHC-dot w-1.5 h-1.5 rounded-full bg-stone-300 shadow-sm transition-all";
-                }
-            });
-        }
-
-        // Export Full Clean HTML
 // ... existing code ... -->
