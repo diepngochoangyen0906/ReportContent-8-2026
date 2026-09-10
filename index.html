@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -29,9 +29,8 @@
                         brandMetricBg: '#FAF2EC'
                     },
                     fontFamily: {
-                        serifTitle: ['Playfair Display', 'Cinzel', 'serif'],
-                        sansBody: ['Plus Jakarta Sans', 'sans-serif'],
-                        cinzel: ['Cinzel', 'serif']
+                        serifTitle: ['Montserrat', 'Cormorant Garamond', 'sans-serif'],
+                        sansBody: ['Plus Jakarta Sans', 'sans-serif']
                     }
                 }
             }
@@ -49,6 +48,10 @@
             background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding-top: 0.15em;
+            padding-bottom: 0.15em;
+            display: inline-block;
+            line-height: 1.25;
         }
 
         .custom-card-shadow {
@@ -128,7 +131,7 @@
 
         <!-- Dynamic Header Title Section -->
         <div class="text-center max-w-2xl mx-auto px-4">
-            <h1 id="tabTitleHeader" class="text-2xl sm:text-4xl font-extrabold tracking-wider font-serifTitle gold-title-gradient uppercase mb-2">
+            <h1 id="tabTitleHeader" class="text-2xl sm:text-4xl font-black tracking-wider font-serifTitle gold-title-gradient uppercase mb-2">
                 DỰ ÁN NỔI BẬT
             </h1>
             <p id="tabSubtitleHeader" class="text-xs sm:text-sm text-stone-600 italic">
